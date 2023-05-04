@@ -1,4 +1,5 @@
 from rest_framework.response import Response
+from django.http import HttpResponse
 from .models import Profile,Post,Comments
 from .serializers import ProfileSerializer,PostSerializer,All_serializer,GetpostSerializer
 from rest_framework.views import APIView
@@ -9,6 +10,9 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 # Create your views here.
+
+def index(request):
+    return HttpResponse("Welcome to Social Api")
 
 #done follow user
 class Follow(APIView):

@@ -7,6 +7,7 @@ from rest_framework_simplejwt.views import (
 
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('api/authenticate/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/follow/<int:id>',views.Follow.as_view(),name='follow'),
     path('api/unfollow/<int:id>',views.UnFollow.as_view(),name='unfollow'),
