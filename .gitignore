@@ -1,3 +1,3 @@
 ECHO is on.
-*.env
-__pycache__/
+.env
+/__pycache__/
