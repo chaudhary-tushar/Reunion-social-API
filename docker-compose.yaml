@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: ./db
+    ports:
+      - "5432:5432"
+    
+
+  web:
+    build:
+      context: ./web
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./web:/app
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db

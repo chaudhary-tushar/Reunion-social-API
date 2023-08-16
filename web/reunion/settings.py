@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'reunion.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myapi',
-        'USER' : 'postgres',
-        'PASSWORD' : 'root',
-        'HOST' : 'localhost',
+        'NAME': 'reapion',
+        'USER' : 'romeo7',
+        'PASSWORD' : 'goldroger3',
+        'HOST' : 'db',
         'PORT' : '5432',
         
     }
