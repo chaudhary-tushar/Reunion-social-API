@@ -1,27 +1,38 @@
-version: '3'
+version: "3.9"
 
 services:
   db:
-    image:
-      romeo7/reunion-db:latest
-    
+    image: postgres:13-alpine
     volumes:
-      - ./backup.sql:/var/local/backup.sql
-      - ./initdb-custom.sh:/docker-entrypoint-initdb.d/initdb-custom.sh
-    ports:
-      - "5432:5432"
+      - redbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=changeme
     
-
   web:
-    image:
-      romeo7/reunion-web:latest
-    command: >
-      sh -c "sleep 30 &&
-             python3 manage.py migrate &&
-             python3 manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - ./web:/app
+    build:
+      context: .
     ports:
-      - "8001:8000"
+      - "8000:8000"
+    volumes:
+      - ./web:/web
+      - rewebdata:/vol/web
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
     depends_on:
       - db 
+volumes:
+    redbdata: 
+    rewebdata: 
+
+
+
+

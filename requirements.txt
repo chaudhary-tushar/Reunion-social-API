@@ -5,8 +5,9 @@ django-environ==0.10.0
 djangorestframework==3.14.0
 djangorestframework-jwt==1.11.0
 djangorestframework-simplejwt==5.2.2
-gunicorn==20.1.0
-psycopg2-binary==2.9.6
+drf-spectacular>=0.24.0,<0.25
+flake8>=4.0.1,<4.1
+psycopg2>=2.9.3,<2.10
 sqlparse==0.4.3
 tzdata==2023.3
-
+uwsgi>=2.0.20,<2.1

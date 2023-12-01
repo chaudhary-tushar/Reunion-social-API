@@ -2,15 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.postgres.fields import ArrayField
 import uuid
+from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import get_user_model
 User=get_user_model()
 
-
-
-
-
-# Create your models here.
 
 class Profile(models.Model):
     id_user=models.IntegerField()
@@ -28,7 +24,7 @@ class Post(models.Model):
     user = models.CharField(max_length=100) 
     title=models.CharField(max_length=100)
     description=models.CharField(max_length=1000)
-    created_at=models.DateTimeField(default=datetime.now())
+    created_at=models.DateTimeField(default=timezone.now())
     comments=ArrayField(models.CharField(max_length=500), blank=True,default=list)
     likes=ArrayField(models.CharField(max_length=20), blank=True,default=list)
     count_likes=models.IntegerField(blank=True,default=0)
